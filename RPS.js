@@ -1,4 +1,5 @@
 let playerSelection;
+let computerSelection;
 
 function getComputerChoice() {
     let randomInt = Math.floor(Math.random() * 3 + 1);
@@ -38,7 +39,16 @@ function playRound(playerSelection, computerSelection) {
     } 
     if (playerSelection == computerSelection) {
         return 'Its a draw!'
-    }     
+    }
+   
 }
 
 
+function game() {
+    
+    for (let i = 0; i < 5; i++) {
+        let result = playRound(prompt("Rock, paper, scissors, shoot!"), getComputerChoice());
+        console.log(result);
+    }
+}
+game();
