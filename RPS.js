@@ -1,3 +1,5 @@
+let playerSelection;
+
 function getComputerChoice() {
     let randomInt = Math.floor(Math.random() * 3 + 1);
     if (randomInt === 1) {
@@ -7,4 +9,36 @@ function getComputerChoice() {
     }
     return 'Scissors'
 }
+
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+    if (playerSelection == 'Rock') {
+        if (computerSelection == 'Scissors'){
+            return 'Yo win! Rock beats scissors'
+        }
+        if (computerSelection == 'Paper'){
+            return 'Yo lose! Paper beats Rock'
+        }
+    }
+    if (playerSelection == 'Scissors') {
+        if (computerSelection == 'Paper'){
+            return 'Yo win! Scissors beat paper'
+        }
+        if (computerSelection == 'Rock'){
+            return 'Yo lose! Rock beats scissors'
+        }
+    }
+    if (playerSelection == 'Paper') {
+        if (computerSelection == 'Rock'){
+            return 'Yo win! Paper beats rock'
+        }
+        if (computerSelection == 'Scissors'){
+            return 'Yo lose! Scissors beat paper'
+        }
+    } 
+    if (playerSelection == computerSelection) {
+        return 'Its a draw!'
+    }     
+}
+
 
