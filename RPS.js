@@ -13,6 +13,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+    console.log(playerSelection);
     if (playerSelection == 'Rock') {
         if (computerSelection == 'Scissors'){
             return 'Yo win! Rock beats scissors'
@@ -43,12 +44,21 @@ function playRound(playerSelection, computerSelection) {
    
 }
 
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', (e) => { 
+        const choice = e.target.id;
+        playRound( choice, getComputerChoice);
+    })
+});
+
 
 function game() {
     
-    for (let i = 0; i < 5; i++) {
-        let result = playRound(prompt("Rock, paper, scissors, shoot!"), getComputerChoice());
-        console.log(result);
-    }
+    //for (let i = 0; i < 5; i++) {
+        //let result = playRound(prompt("Rock, paper, scissors, shoot!"), getComputerChoice());
+        //console.log(result);
+    //}
 }
 game();
