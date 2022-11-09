@@ -53,16 +53,32 @@ function playRound(playerSelection, computerSelection) {
    
 }
 
-const buttons = document.querySelectorAll('button');
 
-buttons.forEach(button => {
-    button.addEventListener('click', (e) => { 
-        const choice = e.target.id;
-        const result = playRound(choice, getComputerChoice());
-        document.querySelector('.playerScore').innerHTML = playerScore;
-        document.querySelector('.compScore').innerHTML = computerScore;
-    })
-});
+
+function onClick(event) { 
+    const result = playRound(event, getComputerChoice());
+    document.querySelector('.roundResult').innerHTML = result;
+    document.querySelector('.playerScore').innerHTML = "Player: "+playerScore;
+    document.querySelector('.compScore').innerHTML = "Computer: "+computerScore;
+    if (playerScore == 5){
+        document.querySelector('.GG').innerHTML = "Game over. You win!";
+       
+    }
+    if (computerScore == 5){
+        document.querySelector('.GG').innerHTML = "Game over. The computer wins!";
+        
+    }
+}
+
+const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('click', function passEvent(e){
+            if (playerScore != 5 && computerScore != 5) {
+                const choice = e.target.id;
+                onClick(choice);
+            }
+        });   
+    });
 
 /*const container = document.querySelector('.scores').innerHTML = playerScore;
 const scores = document.querySelector('.scores');
