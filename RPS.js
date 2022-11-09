@@ -1,5 +1,7 @@
 let playerSelection;
 let computerSelection;
+let playerScore = 0, computerScore = 0;
+let gameOver = false;
 
 function getComputerChoice() {
     let randomInt = Math.floor(Math.random() * 3 + 1);
@@ -13,28 +15,35 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-    console.log(playerSelection);
+    let check = computerSelection;
+    console.log(check);
     if (playerSelection == 'Rock') {
         if (computerSelection == 'Scissors'){
-            return 'Yo win! Rock beats scissors'
+            playerScore++;
+            return 'Yo win! Rock beats scissors'           
         }
         if (computerSelection == 'Paper'){
+            computerScore++;
             return 'Yo lose! Paper beats Rock'
         }
     }
     if (playerSelection == 'Scissors') {
         if (computerSelection == 'Paper'){
-            return 'Yo win! Scissors beat paper'
+            playerScore++;
+            return 'Yo win! Scissors beat paper'           
         }
         if (computerSelection == 'Rock'){
+            computerScore++;
             return 'Yo lose! Rock beats scissors'
         }
     }
     if (playerSelection == 'Paper') {
         if (computerSelection == 'Rock'){
-            return 'Yo win! Paper beats rock'
+            playerScore++;
+            return 'Yo win! Paper beats rock'          
         }
         if (computerSelection == 'Scissors'){
+            computerScore++;
             return 'Yo lose! Scissors beat paper'
         }
     } 
@@ -49,16 +58,23 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     button.addEventListener('click', (e) => { 
         const choice = e.target.id;
-        playRound( choice, getComputerChoice);
+        const result = playRound(choice, getComputerChoice());
+        document.querySelector('.playerScore').innerHTML = playerScore;
+        document.querySelector('.compScore').innerHTML = computerScore;
     })
 });
 
+/*const container = document.querySelector('.scores').innerHTML = playerScore;
+const scores = document.querySelector('.scores');
+scores.textContent = "" + playerScore;
+container.appendChild(scores);
 
-function game() {
-    
-    //for (let i = 0; i < 5; i++) {
-        //let result = playRound(prompt("Rock, paper, scissors, shoot!"), getComputerChoice());
-        //console.log(result);
-    //}
+
+
+/*function game() {
+    while (gameOver = false) {
+
+    }
+
 }
-game();
+game();*/
